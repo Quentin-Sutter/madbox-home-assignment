@@ -151,10 +151,7 @@ namespace Madbox.InputSystem
             var referenceCamera = worldCamera != null ? worldCamera : Camera.main;
 
             var forward = referenceCamera != null ? referenceCamera.transform.forward : Vector3.forward;
-            var right = referenceCamera != null ? referenceCamera.transform.right : Vector3.right;
-
             forward.y = 0f;
-            right.y = 0f;
 
             if (forward.sqrMagnitude <= Mathf.Epsilon)
             {
@@ -165,6 +162,7 @@ namespace Madbox.InputSystem
                 forward.Normalize();
             }
 
+            var right = Vector3.Cross(Vector3.up, forward);
             if (right.sqrMagnitude <= Mathf.Epsilon)
             {
                 right = Vector3.right;
